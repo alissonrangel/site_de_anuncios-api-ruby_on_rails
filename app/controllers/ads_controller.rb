@@ -1,5 +1,29 @@
 class AdsController < AuthorizationController 
-  before_action :logged_in?, except: [:ads]
+  before_action :logged_in?, except: [:ads, :item]
+
+  def item
+    ad_id = params[:id]
+    ad = Ad.find(ad_id)
+
+    @ad2 = {
+      id: "#{ad.id}",
+      image: ad.image,
+      price: ad.price,
+      description: ad.desc,
+      priceNegotiable: ad.priceNegotiable,
+      title: ad.title,
+      featured_image: url_for(ad.featured_image),
+      stateName: ad.user.state.name,
+      dateCreated: ad.created_at,
+      category: ad.category,
+      email: ad.user.email     
+    }
+
+    render json: {                
+      ad: @ad2
+    }
+
+  end
 
   def ads0
     @ads = Ad.all.order(:id).map do |ad|

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post 'user/signin', to: 'users#login'
   get 'categories', to: 'categories#list'
   get 'ad/list', to: 'ads#ads'
+  get 'ad/item', to: 'ads#item'
   #get 'ad/list', to: 'ads#index'
   get 'user/me', to: 'users#me'
   get 'states', to: 'states#list'

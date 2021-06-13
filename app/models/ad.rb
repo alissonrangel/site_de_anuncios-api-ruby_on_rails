@@ -1,5 +1,5 @@
 class Ad < ApplicationRecord
-  has_one :category
+  belongs_to :category
   has_one_attached :featured_image
   belongs_to :user, optional: false
 end
